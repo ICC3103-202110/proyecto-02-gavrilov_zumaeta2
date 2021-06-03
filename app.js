@@ -26,19 +26,4 @@ async function app(state,update,view){
 module.exports = {
     app
 }
- /*   if (Action === 'Add City'){
-        const{addLocation} =  inputAdd()
-        stateO(view,update,Action,addLocation)
-    } 
-    else if (Action === 'Update City'){
-        const{cityUpdate} = await listUpdate(model)
-        stateO(view,update,Action,cityUpdate)
-    }
-    else if (Action === 'Delete City'){
-        const{cityDelete} = await listDelete(model)
-        stateO(view,update,Action,cityDelete)
-    }
-    }
-}
-*/
-
+ 

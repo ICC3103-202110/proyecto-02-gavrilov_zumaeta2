@@ -20,7 +20,8 @@ function getTable(model){
     const{temp} = model
     const{max} = model
     const{min} = model
-    return[{'name': name,'temp':temp,'max':max,'min':min}]
+    const tableData = {'name': name,'temp':temp,'max':max,'min':min}
+    return[tableData]
 }
 
 function listMain(model){
