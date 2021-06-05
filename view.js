@@ -1,8 +1,9 @@
 //L: Maneja vista de consola de manera FUNCIONAL
-
+const {Table} = require('console-table-printer')
 const figlet = require('figlet')
 const chalk = require('chalk')
 const inquirer = require('inquirer')
+
 
 /* L: Para que la función sea pura no debe hacer ningun console.log()
     Tampoco cambiar una variable global*/
@@ -16,12 +17,9 @@ function getTitle(){
 }
 
 function getTable(model){
-    const{name} = model
-    const{temp} = model
-    const{max} = model
-    const{min} = model
-    const tableData = {'name': name,'temp':temp,'max':max,'min':min}
-    return[tableData]
+    const temporal_table=new Table;
+    temporal_table.addRows(model);
+    return temporal_table;
 }
 
 function listMain(model){
@@ -107,10 +105,10 @@ function listDelete(model){
 }
 
 */
-function view(model){
+function view(model,len){
     return {
         title: getTitle(),
-        table: getTable(model)
+        table: getTable(model.registry)
     }
 }
 

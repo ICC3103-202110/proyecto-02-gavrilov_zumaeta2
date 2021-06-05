@@ -10,6 +10,7 @@ const state = {
     currentView: view(initModel)
 }
 
+
 app(state,update,view);
 
 /*L: Main es mi punto de entrada. Se inicializa con el estado inicial

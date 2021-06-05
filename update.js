@@ -1,14 +1,30 @@
 //FUNCIONAL
 
-function update(action, location, cityupdate, citydelete, model){
+function addCityTable(model,input){
+    const {tname,ttemp,tmax,tmin}=input;
+    
+    const temporalTable= model;
+    temporalTable.registry.push({name: tname,
+        temp: ttemp,
+        max: tmax,
+        min: tmin});
+    temporalTable.storedNames.push(tname);
+    return temporalTable;
+}
+
+
+async function update(action, location, cityupdate, citydelete, model,answer){
     if (action == 'Add City'){
+        const newRegistry=await addCityTable(model,answer);
         return{
             ...model,
-            name: location,
+            registry:newRegistry.registry,
+            //registry: newRegistry,
+            /*name: location,
             temp: 22,
             max: 24,
-            min: 10,
-            storedNames:['City 1','City 2','City 3']
+            min: 10,*/
+            storedNames:newRegistry.storedNames
     }}
     else if (action == 'Update City'){
         return{
