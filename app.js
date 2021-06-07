@@ -44,15 +44,30 @@ async function app(state,update,view){
                         }
                     }
                 catch (error){console.log("no se pudo hacer operacion")}
-                
             }
         }
-        
-        //const updatedModel = update(Action,addLocation,cityUpdate,cityDelete,model)
-        state = {
-        ...state,
-        //model: updatedModel,
-        //currentView: view(updatedModel)    
+
+        if (Action==="Delete City") {
+            const updatedModel = await update(Action,addLocation,cityUpdate,cityDelete,model,);
+                    state = {
+                        ...state,
+                        model: updatedModel,
+                        currentView: view(updatedModel)    
+                        }
+        }
+        if (Action==="Update City") {
+            const try_data=await getRequest(cityUpdate);
+            if (try_data!=-1){
+                try {const updatedModel = await update(Action,addLocation,cityUpdate,cityDelete,model,try_data);
+                    
+                    state = {
+                        ...state,
+                        model: updatedModel,
+                        currentView: view(updatedModel)    
+                        }
+                    }
+                catch (error){console.log("no se pudo hacer operacion")}
+            }
         }
     }
 }
