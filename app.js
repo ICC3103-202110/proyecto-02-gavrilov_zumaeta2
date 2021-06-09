@@ -7,13 +7,13 @@ const {update} = require('./update')
 
 async function getRequest(city) {
     try {
-    const res = await axios(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=b275a97dce742e0ae8a7a3ace7437f7d`);
+    const res = await axios(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=b275a97dce742e0ae8a7a3ace7437f7d&units=metric`);
     
     
     const data = await res.data;
-    const temperature=await data.main.temp-273;
-    const tempMax=await data.main.temp_max-273;
-    const tempMin=await data.main.temp_min-273;
+    const temperature=await data.main.temp;
+    const tempMax=await data.main.temp_max;
+    const tempMin=await data.main.temp_min;
     
     return {tname:city,ttemp:Math.round(temperature*100)/100,tmax:Math.round(tempMax*100)/100,tmin:Math.round(tempMin*100)/100};
       } catch (error){
