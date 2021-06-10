@@ -3,13 +3,13 @@
 function addCityTable(model,input){
     const {tname,ttemp,tmax,tmin}=input;
     
-    const temporalTable= model;
-    temporalTable.registry.push({name: tname,
+    const temporalModel= model;
+    temporalModel.registry.push({name: tname,
         temp: ttemp,
         max: tmax,
         min: tmin});
-    temporalTable.storedNames.push(tname);
-    return temporalTable;
+    temporalModel.storedNames.push(tname);
+    return temporalModel;
 }
 function deleteCity (model,input){
     const foundIn=model.storedNames.indexOf(input);
@@ -33,26 +33,19 @@ function updateCity (model,city,input){
 
 async function update(action, location, cityupdate, citydelete, model,answer=0){
     if (action == 'Add City'){
-        const newRegistry=await addCityTable(model,answer);
-        return{
-            ...model,
-            registry:newRegistry.registry,
-    
-            storedNames:newRegistry.storedNames
-    }}
+        const registryAdded=await addCityTable(model,answer);
+        console.log(registryAdded);
+        return registryAdded;
+    }
     else if (action == 'Update City'){
         const updatedRegistry= updateCity(model,cityupdate,answer);
-        return{
-            ...model,
-            resigstry:updatedRegistry.registry
-    }}
+        return updatedRegistry;
+    }
     else if (action == 'Delete City'){
         const modelCityDeleted=deleteCity(model,citydelete);
-        return{
-            ...model,
-            registry:modelCityDeleted.registry,
-            storedNames:modelCityDeleted.storedNames
-    }}
+        console.log(modelCityDeleted);
+        return modelCityDeleted;
+    }
 }
 
 
