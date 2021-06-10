@@ -1,6 +1,7 @@
 //NO FUNCIONAL 
 const axios = require('axios').default;
 const {listMain,view} = require('./view')
+const chalk = require('chalk')
 const {printTable} = require('console-table-printer')
 const {Table} = require('console-table-printer')
 const {update} = require('./update')
@@ -28,7 +29,9 @@ async function app(state,update,view){
     //for the clear
         console.clear()
         console.log(title)
-        table.printTable();
+        const num = Number(model.storedNames.length);
+        if (num===0) {console.log(chalk.gray("NO CITIES"))}
+        else {table.printTable();}
         const{Action,addLocation,cityUpdate, cityDelete} = await listMain(model)
         console.log(Action)
         if (Action==="Add City") {

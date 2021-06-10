@@ -24,7 +24,9 @@ function getTable(model){
 
 function listMain(model){
     const{storedNames} = model
-    return inquirer.prompt([
+    if (Number(storedNames)!=0) {
+    return inquirer.prompt(
+        [
         {type:'list',
         name:'Action',
         message:'Select action:',
@@ -37,8 +39,7 @@ function listMain(model){
             },
             type:'input',
             name:'addLocation',
-            message:'Location?',
-            default:'',
+            message:'Location?'
         },
         {
             when: input =>{
@@ -62,49 +63,27 @@ function listMain(model){
         }
     ])
 }
-
-/*L: Hago distintos inputs para trabajarlos con ifs 
-    y awaits y clear.console() en app(?)*/
-/*
-function inputAdd(){
-    return inquirer.prompt([
-        {type:'input',
-        name:'addLocation',
-        message:'Location?',
-        default:'',
-        validate: function(value){
-            if(isNaN(value) === false){
-                return'Please enter a proper City'}
-            else{return true}} //L: Este validate se puede usar para las ciudades que existan o no
-        }
-    ])
-}
-
-function listUpdate(model){
-    const{storedNames} = model
-    inquirer.prompt([
+else {
+        return inquirer.prompt(
+        [
         {type:'list',
-        name:'cityUpdate',
-        message:'Update city:',
-        choices: storedNames,
+        name:'Action',
+        message:'Select action:',
+        choices: ['Add City'],
         default: '(Use arrow keys)'
-        }
-    ])
+        },
+        {
+            when: input =>{
+                return input.Action == 'Add City'
+            },
+            type:'input',
+            name:'addLocation',
+            message:'Location?'
+            }
+        ])
+    }
 }
 
-function listDelete(model){
-    const{storedNames} = model
-    inquirer.prompt([
-        {type:'list',
-        name:'cityDelete',
-        message:'Delete city:',
-        choices: storedNames,
-        default: '(Use arrow keys)'
-        }
-    ])
-}
-
-*/
 function view(model,len){
     return {
         title: getTitle(),

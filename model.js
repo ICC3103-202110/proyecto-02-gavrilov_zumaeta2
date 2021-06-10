@@ -2,12 +2,8 @@
 
 
 initModel = {
-    registry:[ {name: 'Santiago,CL',
-    temp: 19.98,
-    max: 23.33,
-    min: 17}
-],
-    storedNames: ['Santiago,CL']
+    registry:[],
+    storedNames: []
 }
 
 module.exports = {
